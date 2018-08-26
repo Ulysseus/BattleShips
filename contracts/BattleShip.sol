@@ -51,7 +51,7 @@ contract BattleShip {
           }
 
   modifier isStatePlaying(){
-         require( gamePlayer1.gameState== GameState.Playing || gamePlayer2.gameState== GameState.Playing); _;
+         require( gamePlayer1.gameState== GameState.Playing || (gamePlayer2.gameState == GameState.Playing ||gamePlayer2.gameState == GameState.Joined) ); _;
   }
   modifier isStateFinished(){
          require( gamePlayer1.gameState== GameState.Finished && gamePlayer2.gameState== GameState.Finished); _;
@@ -78,7 +78,7 @@ contract BattleShip {
       }
 
   modifier isTooLong(){
-      require(time-block.number<=30);_;
+      require((block.number-time)<=30);_;
   }
 
 function  get() public {
@@ -90,7 +90,7 @@ function  get() public {
   function newGame( bytes32 merkleroot)   isStateNotStarted()  public  {
       // check game not started already
       // Needs the Merkle root of each players board
-
+                time = block.number;
 
                player[msg.sender] = 1;
                gamePlayer1 = Game({
@@ -156,7 +156,7 @@ function firstMove(uint8 move) public {
 
 }
 */
-function makeMove(uint8 move,string leafValue,bytes32[7] merkleProof)  public isPlayer isTooLong isStatePlaying() {
+function makeMove(uint8 move,string leafValue,bytes32[7] merkleProof)  public isPlayer  isStatePlaying isTooLong {
 
 
 
