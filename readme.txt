@@ -22,7 +22,7 @@ MetaMask will have automatically connected to the first account from truffle dev
 Import another account using the provided private key.
 This step is essential.
 Now make sure MetaMask is set to account 1
-Click Start Game, wait till it is mined, the screen will change to Player 2 must join and make a Move
+Click Start Game, wait till it is mined (Let me repeat it must be mined), the screen will change to Player 2 must join and make a Move
 Change to the tab that has application at port 3001
 Change to account 2 in MetaMask.
 Click Join Game accept the transaction wait for it to be mined.
@@ -64,4 +64,4 @@ I realize now, that is because I was awaiting the response from the smart contra
 you can just call the function directly which responds immediately. The issue is 'await' will wait (stop execution) until the response, it will have no effect
 on setState. I suppose there must be a way to force setState to run I did find a command something like forceUpdate but it refused to compile.
 It occurs to me, that for people who are not famliar with object orientated programming. it might be easier if there was some kind of code. That wrapped it
-so that it appeared to just return the value form the smart contract. 
+so that it appeared to just return the value form the smart contract.
